@@ -18,38 +18,38 @@ import pl.piomin.services.employee.repository.EmployeeRepository;
 public class EmployeeController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
-	
+
 	@Autowired
 	EmployeeRepository repository;
-	
+
 	@PostMapping("/")
 	public Employee add(@RequestBody Employee employee) {
 		LOGGER.info("Employee add: {}", employee);
-		return repository.add(employee);
+		return repository.insert(employee);
 	}
-	
+
 	@GetMapping("/{id}")
 	public Employee findById(@PathVariable("id") Long id) {
 		LOGGER.info("Employee find: id={}", id);
-		return repository.findById(id);
+		return repository.findById(id).get();
 	}
-	
+
 	@GetMapping("/")
 	public List<Employee> findAll() {
 		LOGGER.info("Employee find");
 		return repository.findAll();
 	}
-	
+
 	@GetMapping("/department/{departmentId}")
 	public List<Employee> findByDepartment(@PathVariable("departmentId") Long departmentId) {
 		LOGGER.info("Employee find: departmentId={}", departmentId);
-		return repository.findByDepartment(departmentId);
+		return repository.findByDepartmentId(departmentId);
 	}
-	
+
 	@GetMapping("/organization/{organizationId}")
 	public List<Employee> findByOrganization(@PathVariable("organizationId") Long organizationId) {
 		LOGGER.info("Employee find: organizationId={}", organizationId);
-		return repository.findByOrganization(organizationId);
+		return repository.findByOrganizationId(organizationId);
 	}
-	
+
 }

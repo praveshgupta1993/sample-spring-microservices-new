@@ -1,0 +1,70 @@
+minikube start
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.10 --port=8080
+kubectl expose deployment hello-minikube --type=NodePort
+kubectl get pod
+minikube service hello-minikube --url
+kubectl delete services hello-minikube
+kubectl delete deployment hello-minikube
+minikube stop
+minikube delete
+
+kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+kubectl get deployments
+kubectl get pods
+kubectl config view
+kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+kubectl get services
+minikube service hello-node
+kubectl delete service hello-node
+kubectl delete deployment hello-node
+minikube stop
+minikube delete
+
+kubectl get svc
+
+docker build -t registry.eu-gb.bluemix.net/bx_cf_namespace/compute-interest-api .
+docker build -t registry.eu-gb.bluemix.net/bx_cf_namespace/send-notification .
+docker push registry.eu-gb.bluemix.net/bx_cf_namespace/compute-interest-api
+docker push registry.eu-gb.bluemix.net/bx_cf_namespace/send-notification
+
+kubectl apply -f transaction-generator.yaml
+
+
+
+kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
+
+eval $(minikube docker-env)
+
+
+docker build -t praveshgupta1993/employee-service:1.0 .
+docker build -t praveshgupta1993/department-service:1.0 .
+docker build -t praveshgupta1993/organization-service:1.0 .
+docker build -t praveshgupta1993/gateway-service:1.0 .
+
+docker push praveshgupta1993/employee-service:1.0
+
+kubectl apply -f kubernetes/mongodb-configmap.yaml
+kubectl apply -f kubernetes/mongodb-secret.yaml
+kubectl apply -f kubernetes/mongodb-deployment.yaml
+kubectl apply -f kubernetes/employee-deployment.yaml
+kubectl apply -f kubernetes/department-deployment.yaml
+kubectl apply -f kubernetes/organization-deployment.yaml
+kubectl apply -f kubernetes/gateway-deployment.yaml
+kubectl apply -f kubernetes/ingress.yaml
+
+kubectl delete service employee-service
+kubectl delete service department-service
+kubectl delete service organization-service
+kubectl delete service gateway-service
+
+kubectl delete deployment employee-service
+kubectl delete deployment department-service
+kubectl delete deployment organization-service
+kubectl delete deployment gateway-service
+
+db.createUser({user: "piotr", pwd: "123456", roles: [ { role: "readWrite", db: "microservices" }]})
+db.auth("piotr", "123456")
+
+kubectl expose deployment employee-service --type=NodePort
+
+kubectl describe pod invalid-container-5896955f9f-cg9jg

@@ -1,2 +1,15 @@
 server:
   port: 8088
+  
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+    
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/

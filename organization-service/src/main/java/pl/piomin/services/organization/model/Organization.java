@@ -3,8 +3,13 @@ package pl.piomin.services.organization.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="organization")
 public class Organization {
 
+	@Id
 	private Long id;
 	private String name;
 	private String address;
